@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-if ($ADMIN->fulltree) {
+if ($ADMIN->fulltree or $TEACHER->fulltree) {
 
     require_once($CFG->libdir.'/grade/constants.php');
     $displaytypes = array(GRADE_DISPLAY_TYPE_REAL => new lang_string('real', 'grades'),
