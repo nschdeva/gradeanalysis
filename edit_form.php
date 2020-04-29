@@ -109,6 +109,7 @@ class edit_letter_form extends moodleform {
         $mform->addElement('html', '<div id="boundary_error_container"></div>');
 
         $mform->addElement('header', 'chart', get_string('chart', 'gradereport_gradedist'));
+        $mform->setExpanded('chart');
 
         $description = array();
         $description[] =& $mform->createElement('radio', 'description', '', get_string('absolut', 'gradereport_gradedist'), false);
@@ -179,5 +180,6 @@ class edit_letter_form extends moodleform {
         $mform->addElement('html', '<div id="boundary_error_container"></div>');
 
         $mform->addElement('header', 'analysis', get_string('analysis', 'gradereport_gradedist'));
+        $mform->setExpanded('analysis');
     }
 }
