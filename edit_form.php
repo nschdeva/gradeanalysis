@@ -221,7 +221,12 @@ class edit_letter_form extends moodleform {
         $result = $conn->query($sql);
 
         if ($result->num_rows == 0) {
-            $noresults = $mform->addElement('html', '<b>No Results for specified parameters</b>');
+            $mform->addElement('html', '<b>No Results for specified parameters</b>');
+        }
+        else {
+            foreach ($result as $i) {
+                $mform->addElement('html', $i);
+            }
         }
     }
 }
