@@ -177,9 +177,32 @@ class edit_letter_form extends moodleform {
         $mform->setDefault('grp_export[exportformat]', MTablePDF::OUTPUT_FORMAT_XLSX);
         
         
+        
         $mform->addElement('html', '<div id="boundary_error_container"></div>');
 
         $mform->addElement('header', 'analysis', get_string('analysis', 'gradereport_gradedist'));
         $mform->setExpanded('analysis');
+        
+        
+        $select = $mform->createElement('select', 'criteria', get_string('criteria', 'gradereport_gradedist'));
+        foreach ($gradeitems as $index => $criteria) {
+            $select->addOption($criteria->name, $index, ($criteria->disable) ? array( 'disabled' => 'disabled') : null);
+        }
+        $mform->addElement($select);
+
+        if (($groupmode != NOGROUPS)) {
+            $selectgroup = $mform->createElement('select', 'coursegroup', get_string('labelgroup', 'gradereport_gradedist'));
+            foreach ($coursegroups as $index => $curgroup) {
+                $selectgroup->addOption($curgroup->name, $index, null);
+            }
+            $mform->addElement($selectgroup);
+
+            $selectgrouping = $mform->createElement('select', 'coursegrouping',
+                    get_string('labelgrouping', 'gradereport_gradedist'));
+            foreach ($coursegroupings as $index => $curgrouping) {
+                $selectgrouping->addOption($curgrouping->name, $index, null);
+            }
+            $mform->addElement($selectgrouping);
+        }
     }
 }
