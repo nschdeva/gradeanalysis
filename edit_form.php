@@ -215,4 +215,5 @@ class edit_letter_form extends moodleform {
         if ($conn->connect_error) {
             ("Connection failed: " . $conn->connect_error);
         }
+    }
 }
