@@ -215,5 +215,13 @@ class edit_letter_form extends moodleform {
         if ($conn->connect_error) {
             ("Connection failed: " . $conn->connect_error);
         }
+        
+        $sql = "SELECT * FROM mdl_grade_grades";
+        
+        $result = $conn->query($sql);
+
+        if ($result->num_rows == 0) {
+            $noresults = $mform->addElement('html', '<b>No Results for specified parameters</b>');
+        }
     }
 }
