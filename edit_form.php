@@ -228,5 +228,7 @@ class edit_letter_form extends moodleform {
                 $mform->addElement('html', $i);
             }
         }
+        
+        $conn->close();
     }
 }
