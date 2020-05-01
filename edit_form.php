@@ -184,12 +184,6 @@ class edit_letter_form extends moodleform {
         $mform->setExpanded('analysis');
         
         
-        $select = $mform->createElement('select', 'criteria', get_string('criteria', 'gradereport_gradedist'));
-        foreach ($gradeitems as $index => $criteria) {
-            $select->addOption($criteria->name, $index, ($criteria->disable) ? array( 'disabled' => 'disabled') : null);
-        }
-        $mform->addElement($select);
-
         if (($groupmode != NOGROUPS)) {
             $selectgroup = $mform->createElement('select', 'coursegroup', get_string('labelgroup', 'gradereport_gradedist'));
             foreach ($coursegroups as $index => $curgroup) {
@@ -224,8 +218,10 @@ class edit_letter_form extends moodleform {
             $mform->addElement('html', '<b>No Results for specified parameters</b>');
         }
         else {
-            foreach ($result as $i) {
-                $mform->addElement('html', $i);
+//                 $mform->addElement('html', $coursegroups);
+            foreach ($selectgrouping as $i) {
+                $mform->addElement('text', $i);
+                $mform->addElement('html', '<br>');
             }
         }
         
