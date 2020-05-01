@@ -113,4 +113,3 @@ $string['newletterssubmitted_description'] = 'The user with id {$a->userid} subm
 $string['privacy:null_reason'] = 'This plugin does not store any personal information. It presents an interface to visually display and export the grade distribution of the graded elements within a course.';
 
 $string['analysis'] = 'Analysis';
-$string['criteria'] = 'Criteria for selection';

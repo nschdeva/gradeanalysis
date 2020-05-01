@@ -109,7 +109,7 @@ class edit_letter_form extends moodleform {
         $mform->addElement('html', '<div id="boundary_error_container"></div>');
 
         $mform->addElement('header', 'chart', get_string('chart', 'gradereport_gradedist'));
-        $mform->setExpanded('chart');
+        $mform->setExpanded('chart', FALSE);
 
         $description = array();
         $description[] =& $mform->createElement('radio', 'description', '', get_string('absolut', 'gradereport_gradedist'), false);
@@ -180,25 +180,10 @@ class edit_letter_form extends moodleform {
         
         $mform->addElement('html', '<div id="boundary_error_container"></div>');
 
-        $mform->addElement('header', 'analysis', get_string('analysis', 'gradereport_gradedist'));
+        $mform->addElement('header', 'analysis', 'Analysis');
         $mform->setExpanded('analysis');
         
-        
-        if (($groupmode != NOGROUPS)) {
-            $selectgroup = $mform->createElement('select', 'coursegroup', get_string('labelgroup', 'gradereport_gradedist'));
-            foreach ($coursegroups as $index => $curgroup) {
-                $selectgroup->addOption($curgroup->name, $index, null);
-            }
-            $mform->addElement($selectgroup);
-
-            $selectgrouping = $mform->createElement('select', 'coursegrouping',
-                    get_string('labelgrouping', 'gradereport_gradedist'));
-            foreach ($coursegroupings as $index => $curgrouping) {
-                $selectgrouping->addOption($curgrouping->name, $index, null);
-            }
-            $mform->addElement($selectgrouping);
-        }
-        
+                
         $servername = "localhost";
         $username = "moodleuser";
         $password = "yourpassword";
@@ -218,13 +203,16 @@ class edit_letter_form extends moodleform {
             $mform->addElement('html', '<b>No Results for specified parameters</b>');
         }
         else {
-//                 $mform->addElement('html', $coursegroups);
-            foreach ($selectgrouping as $i) {
-                $mform->addElement('text', $i);
+//             $mform->addElement('html', $select['value']);
+            foreach ($select as $j) {
+                foreach($j as $k) {
+                foreach($k as $l){
+                foreach($l as $i){
+                $mform->addElement('html', $i);
                 $mform->addElement('html', '<br>');
+                }}}
             }
         }
-        
         $conn->close();
     }
 }
