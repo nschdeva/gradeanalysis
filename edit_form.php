@@ -195,7 +195,7 @@ class edit_letter_form extends moodleform {
             ("Connection failed: " . $conn->connect_error);
         }
         
-        $mform->addElement('html', '<h5>Students falling below 40% in marks for the respective activities: </h5><br>'); //Descriptor
+        $mform->addElement('html', '<h5>Students falling below 41% in marks for the respective activities: </h5><br>'); //Descriptor
         
         foreach ($gradeitems as $j) {
             
@@ -212,7 +212,7 @@ class edit_letter_form extends moodleform {
                     WHERE
                         i.courseid = ' . $id . ' AND
                         i.itemname = "' . $j->name . '" AND
-                        g.finalgrade/g.rawgrademax < 0.4;';
+                        g.finalgrade/g.rawgrademax < 0.41;';
         
             $result = $conn->query($sql);
 
