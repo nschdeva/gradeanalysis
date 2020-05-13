@@ -195,24 +195,25 @@ class edit_letter_form extends moodleform {
             ("Connection failed: " . $conn->connect_error);
         }
         
-        $sql = "SELECT * FROM mdl_grade_grades";
         
-        $result = $conn->query($sql);
+        foreach ($gradeitems as $j) {
+            
+            if($j->name == 'Sum for the course')
+                continue;
+                
+            $mform->addElement('html', '<b>' . $j->name . '</b><br>');
+            
+//             $sql = "SELECT * FROM mdl_grade_items g WHERE g.itemname EQUALS ";
+        
+            $result = $conn->query($sql);
 
-        if ($result->num_rows == 0) {
-            $mform->addElement('html', '<b>No Results for specified parameters</b>');
-        }
-        else {
-//             $mform->addElement('html', $select['value']);
-            foreach ($select as $j) {
-                foreach($j as $k) {
-                foreach($k as $l){
-                foreach($l as $i){
-                $mform->addElement('html', $i);
-                $mform->addElement('html', '<br>');
-                }}}
+            if ($result->num_rows == 0) {
+                $mform->addElement('html', '<b>No Results for specified parameters</b>');
             }
+            
+            $mform->addElement('html', '<br><br>');
         }
+        
         $conn->close();
     }
 }
