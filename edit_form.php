@@ -203,7 +203,7 @@ class edit_letter_form extends moodleform {
                 
             $mform->addElement('html', '<b>' . $j->name . '</b><br>');
             
-            $sql = 'SELECT u.firstname, u.lastname
+            $sql = 'SELECT u.username, u.firstname, u.lastname
                     FROM
                         mdl_grade_items AS i
                         JOIN mdl_grade_grades AS g ON (g.itemid = i.id)
@@ -217,12 +217,12 @@ class edit_letter_form extends moodleform {
             if ($result->num_rows == 0) {
                 $mform->addElement('html', '<b>No Results for specified parameters</b>');
             }
-//             else {
-//                 foreach($result as $i)
-//                     $mform->addElement('html', $i);
-//             }
+            else {
+                foreach($result as $i)
+                    $mform->addElement('html', $i[username]. ' - ' . $i[firstname] . ' ' . $i[lastname] . '<br>');
+            }
             
-            $mform->addElement('html', '<br><br>');
+            $mform->addElement('html', '<br>');
         }
         
         $conn->close();
