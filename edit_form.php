@@ -195,6 +195,7 @@ class edit_letter_form extends moodleform {
             ("Connection failed: " . $conn->connect_error);
         }
         
+        $mform->addElement('html', '<h5>Students falling below 40% in marks for the respective activities: </h5><br>'); //Descriptor
         
         foreach ($gradeitems as $j) {
             
@@ -215,14 +216,14 @@ class edit_letter_form extends moodleform {
             $result = $conn->query($sql);
 
             if ($result->num_rows == 0) {
-                $mform->addElement('html', '<b>No Results for specified parameters</b>');
+                $mform->addElement('html', '<i>No Results for specified parameters</i>');   //For no results
             }
             else {
                 foreach($result as $i)
                     $mform->addElement('html', $i[username]. ' - ' . $i[firstname] . ' ' . $i[lastname] . '<br>');
             }
             
-            $mform->addElement('html', '<br>');
+            $mform->addElement('html', '<br>'); //Space after each gradeitem
         }
         
         $conn->close();
