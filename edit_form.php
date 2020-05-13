@@ -217,7 +217,7 @@ class edit_letter_form extends moodleform {
             $result = $conn->query($sql);
 
             if ($result->num_rows == 0) {
-                $mform->addElement('html', '<i>No Results for specified parameters</i><br>');   //For no results
+                $mform->addElement('html', '<i>No Results for specified Grade Item</i><br>');   //For no results
             }
             else {
                 foreach($result as $i)
