@@ -211,12 +211,13 @@ class edit_letter_form extends moodleform {
                         JOIN mdl_user AS u ON (u.id = g.userid)
                     WHERE
                         i.courseid = ' . $id . ' AND
-                        i.itemname = "' . $j->name . '"; ';
+                        i.itemname = "' . $j->name . '" AND
+                        g.finalgrade/g.rawgrademax < 0.4;';
         
             $result = $conn->query($sql);
 
             if ($result->num_rows == 0) {
-                $mform->addElement('html', '<i>No Results for specified parameters</i>');   //For no results
+                $mform->addElement('html', '<i>No Results for specified parameters</i><br>');   //For no results
             }
             else {
                 foreach($result as $i)
